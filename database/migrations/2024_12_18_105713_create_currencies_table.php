@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('abbr');
+            $table->string('code');
             $table->string('region')->default('');
             $table->unsignedBigInteger('created_by_id');
             $table->timestamps();

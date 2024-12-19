@@ -8,6 +8,18 @@
     }
 }
 @layer components {
+    .navbar-single-item {
+        @apply px-4 py-2 flex items-center justify-start gap-2 !no-underline text-gray-500 hover:bg-blue-200 rounded-l text-sm;
+    }
+    .navbar-parent-group {
+        @apply text-gray-500 font-medium py-2 flex items-center gap-2 text-sm;
+    }
+    .navbar-child-item {
+        @apply px-2 py-1 flex items-center justify-start gap-2 !no-underline text-gray-400 hover:bg-blue-50 rounded-l text-sm;
+    }
+    .navbar-child-item-active {
+        @apply text-blue-500 hover:text-blue-500 bg-blue-200 hover:bg-blue-200;
+    }
     .table-container {
         @apply w-full border rounded-lg overflow-hidden;
     }
@@ -29,7 +41,7 @@
         @apply text-center;
     }
     .td {
-        @apply px-4 py-2 border-t align-top text-sm;
+        @apply px-4 py-3 border-t align-top text-sm;
     }
     .td-center {
         @apply !align-middle;

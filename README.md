@@ -1,6 +1,8 @@
-Just don't forget to install php and js package, set env and migrate database
+# Laravel Template System
 
-# Installation
+A basic template project for fullstack app using laravel and tailwindcss.
+
+## Installation
 
 1. run `composer install`
 2. run `npm install`

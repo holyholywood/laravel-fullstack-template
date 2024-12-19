@@ -55,12 +55,7 @@
                 </td>
                 <td class="td td-center">
                     <div class="flex items-center gap-4 justify-center">
-                        <a href="{{ route('media_edit', $data->id) }}" class="btn btn-primary">Edit</a>
-                        <form method="POST" action="{{ route('media_destroy') }}">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $data->id }}">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
+                        <a href="{{ $data->url }}" download class="btn btn-primary">Download</a>
                     </div>
                 </td>
             </tr>
