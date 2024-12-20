@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Modules\Auth\Resource\AuthorizationResource;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $roles = AuthorizationResource::getRoles();
+
+        foreach ($roles as $role) {
+            Role::firstOrCreate(['name' => $role]);
+        }
+
+
+        $permissions = AuthorizationResource::getPermissions();
+
+        $superUserRole = Role::where(['name' => env('DEFAULT_SUPERADMIN_ROLE_NAME', 'SUPER_ADMIN')])->first();
+        foreach ($permissions as $permission) {
+            $createdPermission = Permission::firstOrCreate(['name' => $permission]);
+            $createdPermission->assignRole($superUserRole);
+        }
     }
 }

@@ -13,7 +13,7 @@
 
 <body class="text-slate-600">
     <main class="flex">
-        @include('components.organisms.navbar')
+        @include('components.organisms.sidebar')
         <div class="w-full">
             @include('components.organisms.topbar')
             <div class="px-8 py-10 space-y-8">

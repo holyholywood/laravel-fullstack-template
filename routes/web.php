@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $data =  ['title' => 'Welcome'];
-    return view('welcome', $data);
+    return redirect()->route('customer_index');
 });
 
 require base_path('app/Modules/Auth/Route.php');

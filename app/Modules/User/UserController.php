@@ -5,9 +5,6 @@ namespace App\Modules\User;
 use App\Http\Controllers\Controller;
 use App\Modules\User\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
-use function Pest\Laravel\json;
 
 class UserController extends Controller
 {
