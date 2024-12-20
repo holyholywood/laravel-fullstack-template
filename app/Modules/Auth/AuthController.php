@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -59,7 +60,9 @@ class AuthController extends Controller
     {
         try {
             $data = $request->validated();
-            User::create(['name' => $data['fullname'], 'email' => $data['email'], 'password' => Hash::make($data['password'])]);
+            $user = User::create(['name' => $data['fullname'], 'email' => $data['email'], 'password' => Hash::make($data['password'])]);
+            $role = Role::where(['name' => env('DEFAULT_USER_ROLE_NAME', 'DEFAULT')])->first();
+            $user->assignRole($role);
             Session::flash('success_message', 'Register success. Login to continue!');
             return redirect()->route('auth_login');
         } catch (\Throwable $th) {

@@ -4,9 +4,9 @@ namespace App\Modules\Auth\Resource;
 
 class AuthorizationResource
 {
-    protected static $features = ['USER', 'POLICY', 'CUSTOMER', 'CUSTOMER_INCOME', 'CURRENCY', 'CLAIMS', 'REFUNDS'];
-    protected static $actions = ['VIEW', 'CREATE', 'EDIT', "UPDATE", 'DELETE'];
-    protected static $roles = ['TECHNOLOGY', 'MARKETING',  'UNDERWRITER', 'FINANCE', 'DIRECTOR', 'DEFAULT'];
+    protected static $features = ["USER", "ROLE_PERMISSION", "CUSTOMER", "CUSTOMER_INCOME", "CURRENCY", "POLICY", "CLAIMS", "REFUNDS"];
+    protected static $actions = ["VIEW", "CREATE", "EDIT", "UPDATE", "DELETE"];
+    protected static $roles = ["TECHNOLOGY", "MARKETING", "UNDERWRITER", "FINANCE", "DIRECTOR", "DEFAULT"];
 
     public static function getFeatures()
     {

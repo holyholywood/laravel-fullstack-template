@@ -29,7 +29,7 @@
                     ? 'checked' :'' }}
                     >
                     <label for="permission-{{ $permission->id }}">
-                        {{ str($permission->name)->lower()->title()
+                        {{ str($permission->name)->lower()->title()->replace('_', " ")
                         }}
                     </label>
                 </div>

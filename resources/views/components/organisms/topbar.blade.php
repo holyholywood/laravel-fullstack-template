@@ -2,7 +2,8 @@
     <div class="flex items-center gap-4 ml-auto">
         <div>
             <div class="text-sm font-medium">{{ auth()->user()->name }}</div>
-            <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
+            <div class="text-sm text-gray-500">{{ str(auth()->user()->getRoleNames()[0])->lower()->title()->replace('_',
+                " ") }}</div>
         </div>
         <a href="{{ route('auth_logout') }}" class="btn btn-primary-outline"><i
                 class="ri-logout-box-line"></i>Logout</a>
