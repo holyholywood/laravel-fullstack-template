@@ -1,9 +1,6 @@
 <aside id="navbar" class="w-full max-w-xs min-h-screen border-r h-fit sticky top-0 left-0">
     <div class="px-4 py-4 flex items-center justify-between">
         <a href="/" class="font-semibold text-2xl">{{ env('APP_NAME') }}</a>
-        <button class="navbar-toggle">
-            <i class="ri-menu-line text-2xl"></i>
-        </button>
     </div>
     <ul class="mt-8">
         <li>
