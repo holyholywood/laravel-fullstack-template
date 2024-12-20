@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Modules\Auth\Requests\LoginRequest;
 use App\Modules\Auth\Requests\RegisterRequest;
+use App\Modules\User\UserUtil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +44,8 @@ class AuthController extends Controller
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
             return redirect()->route('customer_index');
+        } else {
+            $context['err_message'] = 'You have entered an invalid username or password';
         }
         return view('auth.login', $context);
     }
@@ -56,13 +59,18 @@ class AuthController extends Controller
         return view('auth.register', $context);
     }
 
-    public function registerUser(RegisterRequest $request)
+    public function registerUser(RegisterRequest $request, UserUtil $userUtil)
     {
         try {
             $data = $request->validated();
-            $user = User::create(['name' => $data['fullname'], 'email' => $data['email'], 'password' => Hash::make($data['password'])]);
+            $user = User::create([
+                'name' => $data['fullname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'profile_picture' => $userUtil->makeDefaultProfilePicture($data['fullname'])
+            ]);
             $role = Role::where(['name' => env('DEFAULT_USER_ROLE_NAME', 'DEFAULT')])->first();
-            $user->assignRole($role);
+            $user->syncRoles($role);
             Session::flash('success_message', 'Register success. Login to continue!');
             return redirect()->route('auth_login');
         } catch (\Throwable $th) {

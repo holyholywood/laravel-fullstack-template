@@ -45,7 +45,7 @@ class UserController extends Controller
     {
 
         $data = $util->getOne($id);
-        return view('user.form', ['title' => 'User Edit', 'data' => $data]);
+        return view('user.form', ['title' => 'User Edit', 'custom_scripts' => 'user.form-script', 'data' => $data]);
     }
 
     public function update(CreateUserRequest $request, String $id, UserUtil $util)
@@ -53,7 +53,7 @@ class UserController extends Controller
         try {
             $data = $request->validated();
             $util->update($id, $data);
-            return redirect()->route('customer_income_index');
+            return redirect()->route('user_index');
         } catch (\Throwable $th) {
             return view('user.form', ['title' => 'Add User']);
         }

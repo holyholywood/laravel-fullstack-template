@@ -8,6 +8,7 @@
 @if(Session::has('success_message'))
 <div class="alert alert-success">{{ Session::get('success_message') }}</div>
 @endif
+
 @isset($err_message)
 <div class="alert alert-danger">{{ $err_message }}</div>
 @endisset

@@ -37,7 +37,9 @@
                     {{ $data->id_card_number ?? "-" }}
                 </td>
                 <td class="td max-w-sm">
-                    {!! html_entity_decode($data->address ?? '') !!}
+                    <div class="line-clamp-3">
+                        {!! html_entity_decode($data->address ?? '') !!}
+                    </div>
                 </td>
                 <td class="td whitespace-nowrap">
                     {{ $data->createdBy->name }}

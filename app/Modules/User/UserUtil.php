@@ -3,21 +3,24 @@
 namespace App\Modules\User;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserUtil
 {
     private $model;
-    public function __construct(User $model)
+    private $roleModel;
+    public function __construct(User $model, Role $roleModel)
     {
         $this->model = $model;
+        $this->roleModel = $roleModel;
     }
 
     public function all($paginate = true, $limit = 10)
     {
         if ($paginate) {
-            return $this->model->paginate($limit);
+            return $this->model->with(['roles'])->paginate($limit);
         }
-        return $this->model->all();
+        return $this->model->with(['roles'])->all();
     }
 
     public function getOne($id)
@@ -32,11 +35,18 @@ class UserUtil
 
     public function update($id, $data)
     {
-        $updated = $this->model->where(['id' => $id])->update($data);
+        $updatedUser = $this->model->where(['id' => $id])->first();
+        $role = $this->roleModel->where(['id' => $data['role_id']])->first();
+        $updatedUser->syncRoles($role);
     }
 
     public function delete($id)
     {
         $deleted = $this->model->where(['id' => $id])->delete();
+    }
+
+    public function makeDefaultProfilePicture($name)
+    {
+        return "https://placehold.co/200x200?text=" . str($name)->replace(' ', "+");
     }
 }

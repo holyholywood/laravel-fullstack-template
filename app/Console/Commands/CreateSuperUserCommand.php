@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Modules\User\UserUtil;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class CreateSuperUserCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(UserUtil $userUtil)
     {
         $name = $this->argument('name');
         $email = $this->argument('email');
@@ -41,9 +42,10 @@ class CreateSuperUserCommand extends Command
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
+                'profile_picture' => $userUtil->makeDefaultProfilePicture($name)
             ]);
             $role = Role::where(['name' => env('DEFAULT_SUPERADMIN_ROLE_NAME', 'TECHNOLOGY')])->first();
-            $user->assignRole($role);
+            $user->syncRoles($role);
 
             DB::commit();
             $this->info('Super User created successfully!');

@@ -51,7 +51,7 @@
         @apply px-6 py-2 rounded-md font-medium flex items-center justify-center gap-2 border duration-300 !no-underline;
     }
     .btn-primary {
-        @apply bg-blue-500 hover:bg-blue-700 active:bg-blue-600 !text-white border-blue-500;
+        @apply bg-blue-500 hover:bg-blue-700 active:bg-blue-600 !text-white border-blue-500 disabled:bg-gray-100 disabled:!text-gray-400 disabled:border-gray-200;
     }
     .btn-primary-outline {
         @apply bg-white hover:bg-blue-100 active:bg-blue-50 text-blue-500 border-blue-500;
@@ -69,7 +69,7 @@
         @apply font-semibold text-lg;
     }
     .input {
-        @apply border rounded-md px-4 py-2 flex;
+        @apply border rounded-md px-4 py-2 flex disabled:bg-gray-50 disabled:select-none disabled:text-gray-500;
     }
     label:has(+ .input-required)::after {
         content: " *";

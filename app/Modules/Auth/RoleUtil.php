@@ -32,13 +32,13 @@ class RoleUtil
 
     public function insert($data)
     {
-        $data['name'] = str($data['name'])->snake()->upper();
+        $data['name'] = str($data['name'])->replace(' ', '_')->upper();
         return $this->model->create($data);
     }
 
     public function update($id, $data)
     {
-        $roleName = str($data['name'])->snake()->upper();
+        $roleName = str($data['name'])->replace(' ', '_')->upper();
         $permissions = $data['permissions'] ?? [];
         $role = $this->model->findById($id);
         $role->syncPermissions($permissions);
