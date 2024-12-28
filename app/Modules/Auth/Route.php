@@ -12,13 +12,13 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('/register', 'registerUser')->name("auth_register_user");
 });
 
-Route::prefix('roles')->controller(RoleController::class)->group(function () {
-    Route::get('/', 'index')->name("role_index");
-    Route::get('/json', 'json_data')->name("role_json_data");
-    Route::post('/add', 'create')->name("role_create");
-    Route::get('/add', 'add')->name("role_add");
-    Route::post('/delete', 'destroy')->name("role_destroy");
-    Route::get('/edit/{id}', 'edit')->name("role_edit");
-    Route::post('/edit/{id}', 'update')->name("role_update");
-    Route::get('/{id}', 'show')->name("role_show");
+Route::prefix('roles')->name('role.')->controller(RoleController::class)->middleware('auth')->group(function () {
+    Route::get('/', 'index')->name("index");
+    Route::get('/json', 'json_data')->name("json_data");
+    Route::post('/add', 'create')->name("create");
+    Route::get('/add', 'add')->name("add");
+    Route::post('/delete', 'destroy')->name("destroy");
+    Route::get('/edit/{id}', 'edit')->name("edit");
+    Route::post('/edit/{id}', 'update')->name("update");
+    Route::get('/{id}', 'show')->name("show");
 });

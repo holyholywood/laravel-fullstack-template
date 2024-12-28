@@ -13,7 +13,7 @@
 <div class="alert alert-success">{{ $value }}</div>
 @endsession
 
-<form method="POST" action="{{ route('profile_update', $data->id) }}" enctype="multipart/form-data" class="space-y-8">
+<form method="POST" action="{{ route('profile.update', $data->id) }}" enctype="multipart/form-data" class="space-y-8">
     <div class="w-fit mx-auto flex flex-col justify-center items-center space-y-2">
         <img src="{{ $data->profile_picture }}" alt="{{ $data->name }} Profile Picture" id="profile-picture-preview"
             class="rounded-full aspect-square object-cover" width="200" height="200">

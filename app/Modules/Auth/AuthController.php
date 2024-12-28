@@ -43,7 +43,7 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
-            return redirect()->route('customer_index');
+            return redirect()->route('dashboard.index');
         } else {
             $context['err_message'] = 'You have entered an invalid username or password';
         }

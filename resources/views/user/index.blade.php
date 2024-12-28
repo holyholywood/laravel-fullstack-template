@@ -3,7 +3,6 @@
 @section('content')
 <div class="flex items-center justify-between w-full">
     @include('components.organisms.pagination-limit')
-    <a href="{{ route('user_create') }}" class="btn btn-primary w-fit ml-auto">Create</a>
 </div>
 @if (session('success_message'))
 <div class="alert alert-success">
@@ -42,7 +41,7 @@
                 </td>
                 <td class="td td-center">
                     @if($data->id !== auth()->id())
-                    <a href="{{ route('user_edit', $data->id) }}" class="btn btn-primary w-fit mx-auto">Edit</a>
+                    <a href="{{ route('user.edit', $data->id) }}" class="btn btn-primary w-fit mx-auto">Edit</a>
                     @else
                     <button class="btn btn-primary mx-auto" disabled>Edit</button>
                     @endif

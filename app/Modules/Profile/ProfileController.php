@@ -31,7 +31,7 @@ class ProfileController extends Controller
         try {
             $data = $request->validated();
             $util->update($id, $data);
-            return redirect()->route('profile_index')->with('message', "Success update profile.");
+            return redirect()->route('profile.index')->with('message', "Success update profile.");
         } catch (\Throwable $th) {
             return redirect()->back()->with('err_message', $th->getMessage());
         }

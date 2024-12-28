@@ -35,7 +35,7 @@ class MediaController extends Controller
         try {
             $data = $request->validated();
             $util->insert($data);
-            return redirect()->route('media_index');
+            return redirect()->route('media.index');
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors($th->getMessage());
         }
@@ -53,7 +53,7 @@ class MediaController extends Controller
         try {
             $data = $request->validated();
             $util->update($id, $data);
-            return redirect()->route('customer_media_index');
+            return redirect()->route('media.index');
         } catch (\Throwable $th) {
             return view('media.form', ['title' => 'Add Media']);
         }
@@ -66,7 +66,7 @@ class MediaController extends Controller
             if (isset($data['id'])) {
                 $util->delete($data['id']);
             }
-            return redirect()->route('customer_media_index')->with('success_message', "Delete Success");
+            return redirect()->route('media.index')->with('success_message', "Delete Success");
         } catch (\Throwable $th) {
             throw $th;
         }

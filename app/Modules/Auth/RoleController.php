@@ -36,9 +36,9 @@ class RoleController extends Controller
         try {
             $data = $request->validated();
             $util->insert($data);
-            return redirect()->route('role_index');
+            return redirect()->route('role.index');
         } catch (\Throwable $th) {
-            return view('role.form', ['title' => 'Add Role',  'err_message' => $th->getMessage()]);
+            return redirect()->back()->with('err_message', $th->getMessage());
         }
     }
 
@@ -56,9 +56,9 @@ class RoleController extends Controller
         try {
             $data = $request->validated();
             $util->update($id, $data);
-            return redirect()->route('role_index');
+            return redirect()->route('role.index');
         } catch (\Throwable $th) {
-            return view('role.form', ['title' => 'Add Role']);
+            return redirect()->back()->with('err_message', $th->getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ class RoleController extends Controller
             if (isset($data['id'])) {
                 $util->delete($data['id']);
             }
-            return redirect()->route('role_index')->with('success_message', "Delete Success");
+            return redirect()->route('role.index')->with('success_message', "Delete Success");
         } catch (\Throwable $th) {
             throw $th;
         }

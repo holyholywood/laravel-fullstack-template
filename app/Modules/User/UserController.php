@@ -35,7 +35,7 @@ class UserController extends Controller
         try {
             $data = $request->validated();
             $util->insert($data);
-            return redirect()->route('customer_income_index');
+            return redirect()->route('user.index');
         } catch (\Throwable $th) {
             return view('user.form', ['title' => 'Add User', 'err_message' => $th->getMessage()]);
         }
@@ -53,7 +53,7 @@ class UserController extends Controller
         try {
             $data = $request->validated();
             $util->update($id, $data);
-            return redirect()->route('user_index');
+            return redirect()->route('user.index');
         } catch (\Throwable $th) {
             return view('user.form', ['title' => 'Add User']);
         }
